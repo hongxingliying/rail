@@ -7,7 +7,17 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    puts "in index"
+    @all_ratings = Movie.all_ratings
+    
+    puts  " inside index"
+    @ratings_to_show = ratings_to_show
+#     session[:ratings]= @ratings_to_show
+    
+#     @sort = sort_to_show
+#     session[:sort] = @sort
+    
+    @movies = with_ratings(@ratings_to_show).order(@sort)
   end
 
   def new
