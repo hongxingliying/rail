@@ -7,16 +7,11 @@ class MoviesController < ApplicationController
   end
 
   def index
-    puts "in index"
+
     @all_ratings = Movie.all_ratings
     
-    puts  " inside index"
     @ratings_to_show = ratings_to_show
-#     session[:ratings]= @ratings_to_show
-    
-#     @sort = sort_to_show
-#     session[:sort] = @sort
-    
+
     @movies = with_ratings(@ratings_to_show).order(@sort)
   end
 
@@ -93,7 +88,7 @@ class MoviesController < ApplicationController
       @showing_sort = session[:sort]
     else
       
-        @showing_sort = params[:sort]
+      @showing_sort = params[:sort]
        
     end
     session[:sort] = @showing_sort
