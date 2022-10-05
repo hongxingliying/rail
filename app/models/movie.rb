@@ -1,8 +1,11 @@
 class Movie < ActiveRecord::Base
 
-  def self.all_ratings 
-
-    Movie.select(:rating).distinct.inject([]){|a, m | a.push m.rating} 
-  end
+  def self.with_ratings(ratings_list)
+      if ratings_list==nil or ratings_list=={}
+        return Movie.all
+      else 
+        return Movie.where(rating: ratings_list.keys)
+      end
+    end
   
 end
